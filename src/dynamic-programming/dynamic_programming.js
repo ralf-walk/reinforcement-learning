@@ -1,4 +1,15 @@
+import React from 'react';
+
 // init gridworld
+function DynamicProgramming() {
+  return (
+    <div className="DynamicProgramming">
+        <h1>DynamicProgramming with gridworld example</h1>
+        <p>{doIterativePolicyEvaluation(mdp)}</p>
+    </div>
+    );
+}
+
 
 let mdp = {
     environment: [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], //size 16
@@ -15,6 +26,7 @@ function doIterativePolicyEvaluation(mdp) {
         console.log("Iteration: " + k + " Current Value function " + value_function);
         value_function = doPolicyEvaluation(mdp, value_function);
     }
+    return value_function;
 }
 
 function doPolicyEvaluation(mdp, value_function) {
@@ -58,5 +70,4 @@ function doPolicyEvaluation(mdp, value_function) {
     return new_value_function;
 }
 
-
-doIterativePolicyEvaluation(mdp);
+export default DynamicProgramming;
