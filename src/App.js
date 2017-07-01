@@ -7,11 +7,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DynamicProgramming />
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h1>Dynamic Programming</h1>
         </div>
+        <DynamicProgramming />
       </div>
     );
   }
