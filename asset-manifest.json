@@ -1,7 +1,20 @@
 {
-  "main.css": "static/css/main.f497d246.css",
-  "main.css.map": "static/css/main.f497d246.css.map",
-  "main.js": "static/js/main.f410b843.js",
-  "main.js.map": "static/js/main.f410b843.js.map",
-  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg"
+  "files": {
+    "main.css": "/reinforcement-learning/static/css/main.f128cc79.chunk.css",
+    "main.js": "/reinforcement-learning/static/js/main.915592a0.chunk.js",
+    "main.js.map": "/reinforcement-learning/static/js/main.915592a0.chunk.js.map",
+    "runtime~main.js": "/reinforcement-learning/static/js/runtime~main.0b26b182.js",
+    "runtime~main.js.map": "/reinforcement-learning/static/js/runtime~main.0b26b182.js.map",
+    "static/css/2.266e55a5.chunk.css": "/reinforcement-learning/static/css/2.266e55a5.chunk.css",
+    "static/js/2.bf5faff5.chunk.js": "/reinforcement-learning/static/js/2.bf5faff5.chunk.js",
+    "static/js/2.bf5faff5.chunk.js.map": "/reinforcement-learning/static/js/2.bf5faff5.chunk.js.map",
+    "index.html": "/reinforcement-learning/index.html",
+    "precache-manifest.ba212abcc663c5a08fbe5df4ca763f26.js": "/reinforcement-learning/precache-manifest.ba212abcc663c5a08fbe5df4ca763f26.js",
+    "service-worker.js": "/reinforcement-learning/service-worker.js",
+    "static/css/2.266e55a5.chunk.css.map": "/reinforcement-learning/static/css/2.266e55a5.chunk.css.map",
+    "static/css/main.f128cc79.chunk.css.map": "/reinforcement-learning/static/css/main.f128cc79.chunk.css.map",
+    "static/media/circle.png": "/reinforcement-learning/static/media/circle.fdb42e17.png",
+    "static/media/cross.png": "/reinforcement-learning/static/media/cross.da92f989.png",
+    "static/media/fire.png": "/reinforcement-learning/static/media/fire.9a32c3dd.png"
+  }
 }
