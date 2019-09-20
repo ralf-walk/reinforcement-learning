@@ -1,6 +1,5 @@
 import React from 'react';
 
-// init gridworld
 class DynamicProgramming extends React.Component {
 
     constructor(props) {
@@ -15,58 +14,16 @@ class DynamicProgramming extends React.Component {
 
     render() {
         return (
-        <div className="DynamicProgramming">
-            <h2>Policy Evaluation</h2>
-            <table> {
-                this.currentPolicyEvaluationValueFunction.map(function(value) {
-                    return (
-                        <tr>
-                            {value.map(function(v) {
-                                return <th>{v}</th>
-                            })}
-                        </tr>
-                    )
-                })
-            }
-            </table>
-            <table> {
-                this.currentPolicyFunction.map(function(value) {
-                    return (
-                        <tr>
-                            {value.map(function(v) {
-                                return <th>{v}</th>
-                            })}
-                        </tr>
-                    )
-                })
-            }
-            </table>
-            <ul>
-                <li />1 = North
-                <li />10 = East
-                <li />100 = South
-                <li />1000 = West
-            </ul>
-            <h2>Value Evaluation</h2>
-            <table> {
-                this.currentValueEvaluationValueFunction.map(function(value) {
-                    return (
-                        <tr>
-                            {value.map(function(v) {
-                                return <th>{v}</th>
-                            })}
-                        </tr>
-                    )
-                })
-            }
-            </table>
-            <button onClick={this.nextIteration}>
-                Next iteration
-            </button>
-            <button onClick={this.reset}>
-                Reset
-            </button>
-        </div>
+            <div className="TicTacToe">
+                <h2>Tic Tac Toe</h2>
+                <p>{this.game.toString()}</p>
+                <button onClick={this.nextIteration}>
+                    Next iteration
+                </button>
+                <button onClick={this.reset}>
+                    Reset
+                </button>
+            </div>
         )
     }
 
@@ -83,10 +40,10 @@ class DynamicProgramming extends React.Component {
 
     reset() {
         this.currentIteration = 0;
-        this.currentPolicyEvaluationValueFunction = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
-        this.currentPolicyFunction = [[1111,1111,1111,1111],[1111,1111,1111,1111],[1111,1111,1111,1111],[1111,1111,1111,1111]];
+        this.currentPolicyEvaluationValueFunction = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+        this.currentPolicyFunction = [[1111, 1111, 1111, 1111], [1111, 1111, 1111, 1111], [1111, 1111, 1111, 1111], [1111, 1111, 1111, 1111]];
 
-        this.currentValueEvaluationValueFunction = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        this.currentValueEvaluationValueFunction = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         this.forceUpdate();
     }
 
@@ -96,7 +53,7 @@ class DynamicProgramming extends React.Component {
             let reachable_states = [];
             if (state[0] == 0 && state[1] == 0 || state[0] == 3 && state[1] == 3) {
                 // if we are in a terminal state, there is no way to get out
-                reachable_states.push({state: [0,0], action: 0});
+                reachable_states.push({state: [0, 0], action: 0});
             } else {
                 // consider alle states if we got north, east, south, or west from this state
                 // we have to stay in the same state when we reach the wall
@@ -111,13 +68,13 @@ class DynamicProgramming extends React.Component {
     }
 
     doPolicyEvaluation(mdp, value_function) {
-        let new_value_function = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        let new_value_function = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 
         // for all states
-        for (let i = 0;  i <= 3; i++) {
-            for (let j = 0; j <= 3; j ++) {
+        for (let i = 0; i <= 3; i++) {
+            for (let j = 0; j <= 3; j++) {
 
-                let state = [i,j];
+                let state = [i, j];
 
                 let new_value = 0;
 
@@ -130,7 +87,7 @@ class DynamicProgramming extends React.Component {
 
                     // get the reward for the state transition
                     let reward = mdp.reward(state, action)
-                    
+
                     let state_prime_value = value_function[r_state[0]][r_state[1]];
 
                     // calculate the value of state by adding the reward for the transition plus the cached value from the next state
@@ -146,15 +103,15 @@ class DynamicProgramming extends React.Component {
 
     // old policy is just for the stabilization propery
     doPolicyImprovement(mdp, value_function, old_policy) {
-        let policy = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        let policy = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 
         let stable = true;
 
         // for all states
-        for (let i = 0;  i <= 3; i++) {
-            for (let j = 0; j <= 3; j ++) {
+        for (let i = 0; i <= 3; i++) {
+            for (let j = 0; j <= 3; j++) {
 
-                let state = [i,j];
+                let state = [i, j];
 
                 let new_value;
                 let greedy_action = 0;
@@ -176,7 +133,7 @@ class DynamicProgramming extends React.Component {
                     if (!new_value || new_value < (reward + state_prime_value)) {
                         new_value = (reward + state_prime_value);
                         greedy_action = action;
-                    }  else if (new_value == (reward + state_prime_value)) {
+                    } else if (new_value == (reward + state_prime_value)) {
                         greedy_action += action;
                     }
                 }
@@ -191,13 +148,13 @@ class DynamicProgramming extends React.Component {
     }
 
     doValueEvaluation(mdp, value_function) {
-        let new_value_function = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        let new_value_function = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 
         // for all states
-        for (let i = 0;  i <= 3; i++) {
-            for (let j = 0; j <= 3; j ++) {
+        for (let i = 0; i <= 3; i++) {
+            for (let j = 0; j <= 3; j++) {
 
-                let state = [i,j];
+                let state = [i, j];
 
                 let new_value;
 
@@ -216,7 +173,7 @@ class DynamicProgramming extends React.Component {
                     // calculate the value of state by adding the reward for the transition plus the cached value from the next state
                     if (!new_value || new_value < (reward + state_prime_value)) {
                         new_value = (reward + state_prime_value);
-                    }  
+                    }
                 }
                 new_value_function[state[0]][state[1]] = new_value;
             }
@@ -224,4 +181,5 @@ class DynamicProgramming extends React.Component {
         return new_value_function;
     }
 }
+
 export default DynamicProgramming;
